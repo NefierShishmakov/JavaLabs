@@ -32,7 +32,7 @@ public class InputFileParser {
             String[] parsedCommand = commandLine.split("\\s");
             if (this.isKeyboardInput)
             {
-                if (parsedCommand.length == 1 && parsedCommand[CONSTANTS.START_INDEX].equals(CONSTANTS.END_OF_FILE))
+                if (parsedCommand.length == CONSTANTS.DEFAULT_ARGS_COUNT && parsedCommand[CONSTANTS.START_INDEX].equals(CONSTANTS.END_OF_FILE))
                 {
                     break;
                 }
