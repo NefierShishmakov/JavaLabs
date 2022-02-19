@@ -29,7 +29,7 @@ public class InputFileParser {
                 continue;
             }
 
-            String[] parsedCommand = commandLine.split("\\s");
+            String[] parsedCommand = commandLine.split(CONSTANTS.WORD_REGEX);
             if (this.isKeyboardInput)
             {
                 if (parsedCommand.length == CONSTANTS.DEFAULT_ARGS_COUNT && parsedCommand[CONSTANTS.START_INDEX].equals(CONSTANTS.END_OF_FILE))
