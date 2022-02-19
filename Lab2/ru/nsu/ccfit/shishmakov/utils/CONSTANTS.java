@@ -19,6 +19,8 @@ public class CONSTANTS {
     public static final String INPUT_FILE_EXTENSION = ".txt";
 
     public static final String CONFIG_FILE_PATH = "config.properties";
+    
+    public static final String WORD_REGEX = "\\s";
 
     public static final String END_OF_FILE = "EOF";
 
