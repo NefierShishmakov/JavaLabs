@@ -1,28 +1,45 @@
 package ru.nsu.ccfit.shishmakov.main;
 
-import java.util.Map;
+import java.io.IOException;
+import java.io.InputStream;
+import java.util.Scanner;
 
-import ru.nsu.ccfit.shishmakov.additional.Background;
-import ru.nsu.ccfit.shishmakov.additional.CONSTANTS;
-import ru.nsu.ccfit.shishmakov.workclasses.CsvWriter;
-import ru.nsu.ccfit.shishmakov.workclasses.FileReader;
-import ru.nsu.ccfit.shishmakov.workclasses.StringParser;
+import ru.nsu.ccfit.shishmakov.utils.Background;
+import ru.nsu.ccfit.shishmakov.executor.CalcExecutor;
+import ru.nsu.ccfit.shishmakov.parser.InputFileParser;
 
 public class Main {
     public static void main(String[] args)
     {
-        try {
-            Background.checkCmdArgs(args);
-            FileReader reader = new FileReader(args[CONSTANTS.FIRST_CMD_ARGUMENT]);
-            StringParser parser = new StringParser(CONSTANTS.REGULAR_EXPRESSION);
-            Map<String, Integer> words = Background.sortMap(parser.getWords(reader));
+        InputStream stream = null;
+        Scanner scanner = null;
+        try
+        {
+            stream = Background.cmdAnalyzer(args);
+            scanner = new Scanner(stream);
+            InputFileParser parser = new InputFileParser(stream);
+            CalcExecutor executor = new CalcExecutor(parser, scanner);
+            executor.execute();
 
-            CsvWriter writer = new CsvWriter(args[CONSTANTS.SECOND_CMD_ARGUMENT]);
-            writer.makeCaptions(CONSTANTS.FIRST_COLUMN, CONSTANTS.SECOND_COLUMN, CONSTANTS.THIRD_COLUMN);
-            writer.writeStatistic(words);
         } catch (Exception ex)
         {
             ex.printStackTrace();
+        } finally
+        {
+            if (scanner != null)
+            {
+                scanner.close();
+            }
+            if (stream != null)
+            {
+                try
+                {
+                    stream.close();
+                } catch (IOException ex)
+                {
+                    System.err.println(ex.getMessage());
+                }
+            }
         }
     }
 }

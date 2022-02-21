@@ -5,4 +5,9 @@ public class CmdArgsException extends Exception {
     {
         super(message);
     }
+
+    public CmdArgsException(String message, Throwable cause)
+    {
+        super(message, cause);
+    }
 }
