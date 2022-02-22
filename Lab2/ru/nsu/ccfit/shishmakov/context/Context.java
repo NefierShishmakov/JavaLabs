@@ -39,11 +39,6 @@ public class Context {
         stack.push(varValue);
     }
 
-    /*public void setVariable(String varName, double value)
-    {
-        variables.put(varName, value);
-    }*/
-
     public void setVariable(String varName, String secondArg, boolean isVariable) throws VariableExistenceException
     {
         if (isVariable)
