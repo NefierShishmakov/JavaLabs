@@ -3,7 +3,6 @@ package ru.nsu.ccfit.shishmakov.worker;
 import ru.nsu.ccfit.shishmakov.context.Context;
 import ru.nsu.ccfit.shishmakov.utils.CONSTANTS;
 
-import java.util.EmptyStackException;
 import java.util.logging.Logger;
 
 public class PopWorker implements Worker {
@@ -12,12 +11,7 @@ public class PopWorker implements Worker {
     {
         logger.info(className + CONSTANTS.START_LOGGER);
 
-        try {
-            context.pop();
-        } catch (EmptyStackException ex)
-        {
-            throw new EmptyStackException();
-        }
+        context.pop();
 
         logger.info(className + CONSTANTS.END_LOGGER);
     }

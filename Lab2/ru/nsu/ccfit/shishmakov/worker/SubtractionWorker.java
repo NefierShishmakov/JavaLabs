@@ -3,7 +3,6 @@ package ru.nsu.ccfit.shishmakov.worker;
 import ru.nsu.ccfit.shishmakov.context.Context;
 import ru.nsu.ccfit.shishmakov.utils.CONSTANTS;
 
-import java.util.EmptyStackException;
 import java.util.logging.Logger;
 
 public class SubtractionWorker implements Worker {
@@ -12,16 +11,8 @@ public class SubtractionWorker implements Worker {
     {
         logger.info(className + CONSTANTS.START_LOGGER);
 
-        double firstValue;
-        double secondValue;
-
-        try {
-            firstValue = context.pop();
-            secondValue = context.pop();
-        } catch (EmptyStackException ex)
-        {
-            throw new EmptyStackException();
-        }
+        double firstValue = context.pop();
+        double secondValue = context.pop();
 
         double subtractionResult = firstValue - secondValue;
         context.push(subtractionResult);

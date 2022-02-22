@@ -3,7 +3,6 @@ package ru.nsu.ccfit.shishmakov.worker;
 import ru.nsu.ccfit.shishmakov.context.Context;
 import ru.nsu.ccfit.shishmakov.utils.CONSTANTS;
 
-import java.util.EmptyStackException;
 import java.util.logging.Logger;
 
 public class PrintWorker implements Worker {
@@ -11,12 +10,7 @@ public class PrintWorker implements Worker {
         {
                 logger.info(className + CONSTANTS.START_LOGGER);
 
-                try {
-                        System.out.println(context.peek());
-                } catch (EmptyStackException ex)
-                {
-                        throw new EmptyStackException();
-                }
+                System.out.println(context.peek());
 
                 logger.info(className + CONSTANTS.END_LOGGER);
         }

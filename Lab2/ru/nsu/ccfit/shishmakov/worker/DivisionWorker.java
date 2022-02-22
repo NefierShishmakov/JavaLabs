@@ -4,7 +4,6 @@ import ru.nsu.ccfit.shishmakov.context.Context;
 import ru.nsu.ccfit.shishmakov.exceptions.DivisionByZeroException;
 import ru.nsu.ccfit.shishmakov.utils.CONSTANTS;
 
-import java.util.EmptyStackException;
 import java.util.logging.Logger;
 
 public class DivisionWorker implements Worker {
@@ -13,16 +12,8 @@ public class DivisionWorker implements Worker {
     {
         logger.info(className + CONSTANTS.START_LOGGER);
 
-        double firstValue;
-        double secondValue;
-
-        try {
-            firstValue = context.pop();
-            secondValue = context.pop();
-        } catch (EmptyStackException ex)
-        {
-            throw new EmptyStackException();
-        }
+        double firstValue = context.pop();
+        double secondValue = context.pop();
 
         if (secondValue == CONSTANTS.ZERO_DOUBLE)
             throw new DivisionByZeroException(CONSTANTS.DIVISION_BY_ZERO_ERROR + CONSTANTS.ERROR_MESSAGE);

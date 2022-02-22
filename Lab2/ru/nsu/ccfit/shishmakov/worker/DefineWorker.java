@@ -1,6 +1,7 @@
 package ru.nsu.ccfit.shishmakov.worker;
 
 import ru.nsu.ccfit.shishmakov.context.Context;
+import ru.nsu.ccfit.shishmakov.exceptions.VariableExistenceException;
 import ru.nsu.ccfit.shishmakov.exceptions.VariableSyntaxException;
 import ru.nsu.ccfit.shishmakov.utils.Background;
 import ru.nsu.ccfit.shishmakov.utils.CONSTANTS;
@@ -9,7 +10,7 @@ import java.util.logging.Logger;
 
 public class DefineWorker implements Worker {
     @Override
-    public void work(String[] commandArgs, Context context) throws VariableSyntaxException
+    public void work(String[] commandArgs, Context context) throws VariableSyntaxException, VariableExistenceException
     {
         logger.info(className + CONSTANTS.START_LOGGER);
 
@@ -17,17 +18,19 @@ public class DefineWorker implements Worker {
         if (!Background.isVariableNameCorrect(varName))
             throw new VariableSyntaxException(CONSTANTS.VARIABLE_SYNTAX_ERROR + varName + CONSTANTS.ERROR_MESSAGE);
 
-        String strVarValue = commandArgs[CONSTANTS.SECOND_COMMAND_ARG];
-        double varValue;
+        String secondArg = commandArgs[CONSTANTS.SECOND_COMMAND_ARG];
+        //double varValue;
 
-        try {
+        context.setVariable(varName, secondArg, Background.isVariable(secondArg));
+
+        /*try {
             varValue = Double.parseDouble(strVarValue);
         } catch (NumberFormatException ex)
         {
             throw new NumberFormatException(CONSTANTS.VARIABLE_DATATYPE_ERROR + strVarValue + CONSTANTS.ERROR_MESSAGE);
-        }
+        }*/
 
-        context.setVariable(varName, varValue);
+        //context.setVariable(varName, varValue);
 
         logger.info(className + CONSTANTS.END_LOGGER);
     }

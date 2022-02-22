@@ -29,10 +29,11 @@ public class InputFileParser {
                 continue;
             }
 
-            String[] parsedCommand = commandLine.split(CONSTANTS.WORD_REGEX);
+            String[] parsedCommand = commandLine.split(CONSTANTS.DEFAULT_WORD_REGEX);
             if (this.isKeyboardInput)
             {
-                if (parsedCommand.length == CONSTANTS.DEFAULT_ARGS_COUNT && parsedCommand[CONSTANTS.START_INDEX].equals(CONSTANTS.END_OF_FILE))
+                if (parsedCommand.length == CONSTANTS.DEFAULT_ARGS_COUNT &&
+                        parsedCommand[CONSTANTS.START_INDEX].equals(CONSTANTS.END_OF_FILE))
                 {
                     break;
                 }

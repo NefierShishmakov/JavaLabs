@@ -3,7 +3,6 @@ package ru.nsu.ccfit.shishmakov.worker;
 import ru.nsu.ccfit.shishmakov.context.Context;
 import ru.nsu.ccfit.shishmakov.utils.CONSTANTS;
 
-import java.util.EmptyStackException;
 import java.util.logging.Logger;
 
 public class SqrtWorker implements Worker {
@@ -12,14 +11,7 @@ public class SqrtWorker implements Worker {
     {
         logger.info(className + CONSTANTS.START_LOGGER);
 
-        double value;
-
-        try {
-            value = context.pop();
-        } catch (EmptyStackException ex)
-        {
-            throw new EmptyStackException();
-        }
+        double value = context.pop();
 
         double sqrtResult = Math.sqrt(value);
         context.push(sqrtResult);

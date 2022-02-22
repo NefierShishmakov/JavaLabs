@@ -29,7 +29,7 @@ public class CalcExecutor {
             }
         }
     }
-    
+//VariableException | DivisionByZeroException | EmptyStackException | NumberFormatException | ReflectiveOperationException
     private final Factory factory;
     private final ArrayList<String[]> commandsList;
     private final Context context;

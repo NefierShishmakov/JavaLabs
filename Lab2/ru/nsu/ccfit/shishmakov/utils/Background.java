@@ -60,4 +60,15 @@ public class Background {
         return !(SourceVersion.isKeyword(varName) || varName.substring(0, 1).matches(CONSTANTS.FIRST_CHARACTER_REGEX) ||
                 matcher.find());
     }
+
+    public static boolean isVariable(String varName)
+    {
+        try {
+            Double.parseDouble(varName);
+            return false;
+        } catch (NumberFormatException ex)
+        {
+            return true;
+        }
+    }
 }
