@@ -3,6 +3,7 @@ package ru.nsu.ccfit.shishmakov.workclasses;
 import ru.nsu.ccfit.shishmakov.additional.CONSTANTS;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.regex.Pattern;
 import java.util.regex.Matcher;
@@ -17,8 +18,9 @@ public class StringParser {
     public Map<String, Integer> getWords(FileReader reader) throws IOException
     {
         Map<String, Integer> words = new HashMap<>();
-        String curLine;
-        while ((curLine = reader.readLine()) != null)
+        ArrayList<String> lines = reader.readFile();
+
+        for (String curLine: lines)
         {
             Matcher matcher = this.pattern.matcher(curLine);
             while (matcher.find())
@@ -26,8 +28,7 @@ public class StringParser {
                 String word = curLine.substring(matcher.start(), matcher.end());
                 if (words.containsKey(word))
                 {
-                    int curValue = words.get(word);
-                    words.put(word, ++curValue);
+                    words.put(word, words.get(word) + CONSTANTS.INCREASER);
                 } else {
                     words.put(word, CONSTANTS.DEFAULT_WORD_COUNT);
                 }

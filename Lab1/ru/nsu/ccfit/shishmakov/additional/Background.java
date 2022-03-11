@@ -54,21 +54,21 @@ public class Background {
     {
         if (args.length != CONSTANTS.CMD_ARGUMENTS_COUNT)
         {
-            throw new CmdArgsException(CONSTANTS.CMD_ARGS_ERROR + CONSTANTS.ERROR_MESSAGE);
+            throw new CmdArgsException(CONSTANTS.ERROR_MESSAGE + CONSTANTS.CMD_ARGS_ERROR);
         }
 
         String inputFile = args[CONSTANTS.FIRST_CMD_ARGUMENT];
         if (inputFile.lastIndexOf(CONSTANTS.INPUT_FILE_EXTENSION) == CONSTANTS.ERROR_INDEX)
         {
-            throw new CmdArgsException(CONSTANTS.FILE_EXTENSION_ERROR + CONSTANTS.INPUT_FILE_EXTENSION +
-                    CONSTANTS.ADDITIONAL_INFO + inputFile + CONSTANTS.ERROR_MESSAGE);
+            throw new CmdArgsException(CONSTANTS.ERROR_MESSAGE + CONSTANTS.FILE_EXTENSION_ERROR +
+                    CONSTANTS.INPUT_FILE_EXTENSION + CONSTANTS.ADDITIONAL_INFO + inputFile);
         }
 
         String outputFile = args[CONSTANTS.SECOND_CMD_ARGUMENT];
         if (outputFile.lastIndexOf(CONSTANTS.OUTPUT_FILE_EXTENSION) == CONSTANTS.ERROR_INDEX)
         {
-            throw new CmdArgsException(CONSTANTS.FILE_EXTENSION_ERROR + CONSTANTS.OUTPUT_FILE_EXTENSION +
-                    CONSTANTS.ADDITIONAL_INFO + outputFile + CONSTANTS.ERROR_MESSAGE);
+            throw new CmdArgsException(CONSTANTS.ERROR_MESSAGE + CONSTANTS.FILE_EXTENSION_ERROR +
+                    CONSTANTS.OUTPUT_FILE_EXTENSION + CONSTANTS.ADDITIONAL_INFO + outputFile);
         }
     }
 }
