@@ -1,6 +1,6 @@
 package ru.nsu.ccfit.shishmakov.worker;
 import ru.nsu.ccfit.shishmakov.context.Context;
-import ru.nsu.ccfit.shishmakov.utils.CONSTANTS;
+import ru.nsu.ccfit.shishmakov.utils.constants.LoggersConstants;
 
 import java.util.logging.Logger;
 
@@ -13,7 +13,7 @@ public class AdditionWorker implements Worker {
     @Override
     public void work(String[] commandArgs, Context context)
     {
-        logger.info(className + CONSTANTS.START_LOGGER);
+        logger.info(className + LoggersConstants.START_LOGGER);
 
         double firstValue = context.pop();
         double secondValue = context.pop();
@@ -21,7 +21,7 @@ public class AdditionWorker implements Worker {
         double additionResult = firstValue + secondValue;
         context.push(additionResult);
 
-        logger.info(className + CONSTANTS.END_LOGGER);
+        logger.info(className + LoggersConstants.END_LOGGER);
     }
 
     private static final String className = AdditionWorker.class.getName();

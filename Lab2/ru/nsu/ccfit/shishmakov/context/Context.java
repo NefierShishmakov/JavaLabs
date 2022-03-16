@@ -1,7 +1,7 @@
 package ru.nsu.ccfit.shishmakov.context;
 
 import ru.nsu.ccfit.shishmakov.exceptions.VariableExistenceException;
-import ru.nsu.ccfit.shishmakov.utils.CONSTANTS;
+import ru.nsu.ccfit.shishmakov.utils.constants.ErrorConstants;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -39,19 +39,14 @@ public class Context {
         stack.push(varValue);
     }
 
-    /*public void setVariable(String varName, double value)
-    {
-        variables.put(varName, value);
-    }*/
-
     public void setVariable(String varName, String secondArg, boolean isVariable) throws VariableExistenceException
     {
         if (isVariable)
         {
             if (!this.variables.containsKey(secondArg))
             {
-                throw new VariableExistenceException(CONSTANTS.VARIABLE_EXISTENCE_ERROR + secondArg
-                        + CONSTANTS.ERROR_MESSAGE);
+                throw new VariableExistenceException(ErrorConstants.VARIABLE_EXISTENCE_ERROR + secondArg
+                        + ErrorConstants.ERROR_MESSAGE);
             }
             variables.put(varName, variables.get(secondArg));
         }

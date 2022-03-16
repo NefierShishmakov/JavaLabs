@@ -1,18 +1,19 @@
 package ru.nsu.ccfit.shishmakov.factory;
 
 import java.io.IOException;
+import java.io.InputStream;
 import java.util.Properties;
 
-//////////////My packages//////////////
 import ru.nsu.ccfit.shishmakov.worker.Worker;
-import ru.nsu.ccfit.shishmakov.utils.CONSTANTS;
 
 public class Factory {
+    private static final String CONFIG_FILE_PATH = "config.properties";
+
     public Factory() throws IOException {
-        this.prop = new Properties();
-        var config = Factory.class.getResourceAsStream(CONSTANTS.CONFIG_FILE_PATH);
+        InputStream config = Factory.class.getClassLoader().getResourceAsStream(CONFIG_FILE_PATH);
         if (config != null)
         {
+            this.prop = new Properties();
             prop.load(config);
             config.close();
         }
@@ -23,5 +24,5 @@ public class Factory {
         return (Worker) Class.forName(prop.getProperty(type)).getDeclaredConstructor().newInstance();
     }
 
-    private final Properties prop;
+    private Properties prop;
 }
